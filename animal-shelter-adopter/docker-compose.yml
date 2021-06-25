@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  database-mongodb:
+    image: mongo
+    container_name: "mongodbcontainer"
+    ports:
+      - 27017:27017
+    restart: always
+  api-adopter:
+    build: .
+    restart: always
+    container_name: "apiadoptercontainer"
+    ports:
+      - 8080:8080
+    working_dir: /opt/app
+    depends_on:
+      - database-mongodb
